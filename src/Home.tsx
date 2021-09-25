@@ -67,6 +67,7 @@ const Home = (props: HomeProps) => {
     const [isActive, setIsActive] = useState(false); // true when countdown completes
     const [isSoldOut, setIsSoldOut] = useState(false); // true when items remaining is zero
     const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
+    const [isUpdated, setIsUpdated] = useState(false);
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -137,6 +138,7 @@ const Home = (props: HomeProps) => {
                 setBalance(balance / LAMPORTS_PER_SOL);
             }
             setIsMinting(false);
+            setIsUpdated(!isUpdated);
         }
     };
 
@@ -168,7 +170,7 @@ const Home = (props: HomeProps) => {
             setItemsAvailable(itemsAvailable);
             setIsLoading(false);
         })();
-    }, [wallet, props.candyMachineId, props.connection,]);
+    }, [wallet, props.candyMachineId, props.connection, isUpdated]);
 
 
     return (
@@ -201,7 +203,7 @@ const Home = (props: HomeProps) => {
                                                             <Text textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontStyle={"italic"}>Solt Out! See
                                                                 Collection on Solanart.io of {itemsAvailable} bulls</Text>
                                                         ) :
-                                                        <Text textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontStyle={"italic"}>{itemsRedeemed}/{itemsAvailable}</Text>
+                                                        <Text textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontStyle={"italic"}>Minted: {itemsRedeemed}/{itemsAvailable}</Text>
                                                 )
                                             }
                                             <Button onClick={isSoldOut ? () => {
