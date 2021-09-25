@@ -52,7 +52,8 @@ interface RoadMapCompProps {
 
 const RoadMapComp = (props: RoadMapCompProps) => {
     return (
-        <Box boxShadow={"2xl"} textShadow={"2px 2px #000000"} color={"white"} padding={6} borderRadius={2} border={"1px solid #ccc"}>
+        <Box boxShadow={"2xl"} textShadow={"2px 2px #000000"} color={"white"} padding={6} borderRadius={2}
+             border={"1px solid #ccc"}>
             <Heading fontFamily={"Josefin Sans"}>{props.heading}</Heading>
             <Text fontFamily={"Roboto"} mt={6}>
                 {props.text}
@@ -68,6 +69,7 @@ const Home = (props: HomeProps) => {
     const [isSoldOut, setIsSoldOut] = useState(false); // true when items remaining is zero
     const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
     const [isUpdated, setIsUpdated] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -154,85 +156,107 @@ const Home = (props: HomeProps) => {
     useEffect(() => {
         (async () => {
 
-            const {
-                candyMachine, goLiveDate, itemsRemaining, itemsAvailable,
-                itemsRedeemed,
-            } =
-                await getCandyMachineState(
-                    wallet as anchor.Wallet,
-                    props.candyMachineId,
-                    props.connection
-                );
+            try {
+                const {
+                    candyMachine, goLiveDate, itemsRemaining, itemsAvailable,
+                    itemsRedeemed,
+                } =
+                    await getCandyMachineState(
+                        wallet as anchor.Wallet,
+                        props.candyMachineId,
+                        props.connection
+                    );
 
-            setIsSoldOut(itemsRemaining === 0);
-            setCandyMachine(candyMachine);
-            setItemsRedeemed(itemsRedeemed);
-            setItemsAvailable(itemsAvailable);
-            setIsLoading(false);
+                setIsSoldOut(itemsRemaining === 0);
+                setCandyMachine(candyMachine);
+                setItemsRedeemed(itemsRedeemed);
+                setItemsAvailable(itemsAvailable);
+                setIsLoading(false);
+            } catch (e) {
+                setIsMobile(true);
+                setIsLoading(false);
+            }
+
         })();
     }, [wallet, props.candyMachineId, props.connection, isUpdated]);
 
 
     return (
         <Box>
-            <Box w={"100%"} position={"fixed"}>
+            <Box w={"100%"} position={["fixed"]}>
                 <Navbar/>
             </Box>
             <Box backgroundSize={"cover"} backgroundImage={bg}>
-                <Box __css={{height: "calc(100vh - 92px)"}} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
-                    <Flex justifyContent={"center"} alignItems={"center"} height={"100%"}>
+                <Box pt={24} height={["auto", "auto", "auto", "auto", "100vh"]} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
+                    <Grid placeItems={"center"} gridTemplateColumns={"1fr"} height={"100%"}>
                         <Box>
-                            <Grid gridTemplateColumns={"1fr 1fr"}>
+                            <Grid gridGap={5} placeItems={"center"}
+                                  gridTemplateColumns={["1fr", "1fr", "1fr", "1fr", "1fr 1fr"]}>
                                 <Box w={"100%"}>
                                     <ImageChanger/>
                                 </Box>
-                                <Flex w={"100%"} alignItems={"center"} justifyContent={"center"}>
+                                <Grid w={"100%"} placeItems={"center"} gridTemplateColumns={"1fr"}>
                                     <Box textAlign={"center"}>
-                                        <Heading fontSize={22} color={"white"} textShadow={"2px 2px #000000"} fontFamily={"Josefin Sans"} textTransform={"uppercase"}>Welcome
+                                        <Heading fontSize={22} color={"white"} textShadow={"2px 2px #000000"}
+                                                 fontFamily={"Josefin Sans"} textTransform={"uppercase"}>Welcome
                                             to the</Heading>
                                         <Box mt={10}>
-                                            <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontSize={80}>CRYPTO</Heading>
-                                            <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontSize={80}>WILDLINGS</Heading>
-                                            <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontSize={80}>OF THE</Heading>
-                                            <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontSize={80}>DAWN</Heading>
+                                            <Heading textShadow={"2px 2px #000000"} color={"white"}
+                                                     fontFamily={"Josefin Sans"} fontSize={[50, 80]}>CRYPTO</Heading>
+                                            <Heading textShadow={"2px 2px #000000"} color={"white"}
+                                                     fontFamily={"Josefin Sans"} fontSize={[50, 80]}>WILDLINGS</Heading>
+                                            <Heading textShadow={"2px 2px #000000"} color={"white"}
+                                                     fontFamily={"Josefin Sans"} fontSize={[50, 80]}>OF THE</Heading>
+                                            <Heading textShadow={"2px 2px #000000"} color={"white"}
+                                                     fontFamily={"Josefin Sans"} fontSize={[50, 80]}>DAWN</Heading>
                                         </Box>
                                         <Box mt={10}>
                                             {
                                                 !isLoading && (
+                                                    isMobile ? <Text textShadow={"2px 2px #000000"} color={"white"}
+                                                                     fontFamily={"Josefin Sans"} fontStyle={"italic"}>You seem to be using a mobile device</Text> :
                                                     isSoldOut ? (
-                                                            <Text textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontStyle={"italic"}>Solt Out! See
+                                                            <Text textShadow={"2px 2px #000000"} color={"white"}
+                                                                  fontFamily={"Josefin Sans"} fontStyle={"italic"}>Solt Out!
+                                                                See
                                                                 Collection on Solanart.io of {itemsAvailable} bulls</Text>
                                                         ) :
-                                                        <Text textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontStyle={"italic"}>Minted: {itemsRedeemed}/{itemsAvailable}</Text>
+                                                        <Text textShadow={"2px 2px #000000"} color={"white"}
+                                                              fontFamily={"Josefin Sans"}
+                                                              fontStyle={"italic"}>Minted: {itemsRedeemed}/{itemsAvailable}</Text>
                                                 )
                                             }
-                                            <Button onClick={isSoldOut ? () => {
+                                            <Button onClick={ isMobile || isSoldOut ? () => {
                                                 const url = new URL("https://solanart.io");
                                                 const win = window.open(url, "_blank");
-                                                if(win) win.focus();
-                                            } : !wallet ? () => walletDialog.setOpen(true) : onMint} fontFamily={"Josefin Sans"} _hover={{bgColor: "#262626"}} pt={1}
+                                                if (win) win.focus();
+                                            } : !wallet ? () => walletDialog.setOpen(true) : onMint}
+                                                    fontFamily={"Josefin Sans"} _hover={{bgColor: "#262626"}} pt={1}
                                                     mt={3} borderRadius={0}
                                                     isLoading={isMinting || isLoading}
                                                     bgColor={"black"}
                                                     color={"white"}>
-                                                { isSoldOut ? "SOLANART" :  wallet ? "MINT" : "CONNECT"}
+                                                {isMobile || isSoldOut ? "SOLANART" : wallet ? "MINT" : "CONNECT YOUR WALLET"}
                                             </Button>
                                         </Box>
                                     </Box>
-                                </Flex>
+                                </Grid>
                             </Grid>
                         </Box>
-                    </Flex>
+                    </Grid>
                 </Box>
-                <Box __css={{height: "100vh"}} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
-                    <Flex justifyContent={"center"} alignItems={"center"} height={"100%"}>
+                <Box mt={10} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
+                    <Grid placeItems={"center"} gridTemplateColumns={"1fr"} height={"100%"}>
                         <Box>
                             <Box textAlign={"center"}>
-                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontSize={60}>Lorem Ipsum</Heading>
-                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontSize={60}>Sit Dolor &</Heading>
-                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontSize={60}>Ametsaltabme</Heading>
+                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
+                                         fontSize={[50, 60]}>Lorem Ipsum</Heading>
+                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
+                                         fontSize={[50, 60]}>Sit Dolor &</Heading>
+                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
+                                         fontSize={[50, 60]}>Ametsaltabme</Heading>
                             </Box>
-                            <Box w={["70%"]} mx={"auto"} mt={3}>
+                            <Box w={["90%", "70%"]} mx={"auto"} mt={3}>
                                 <Text color={"white"} fontFamily={"Roboto"} textAlign={"center"} fontSize={20}>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu velit id erat
                                     posuere
@@ -252,19 +276,22 @@ const Home = (props: HomeProps) => {
                                         color={"white"}>JOIN DISCORD</Button>
                             </Box>
                         </Box>
-                    </Flex>
+                    </Grid>
                 </Box>
-                <Box __css={{height: "100vh"}} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
-                    <Flex justifyContent={"center"} alignItems={"center"} height={"100%"}>
+                <Box h={["auto", "auto", "100vh"]} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
+                    <Grid placeItems={"center"} pt={10} gridTemplateColumns={"1fr"} height={"100%"}>
                         <Box>
                             <Box textAlign={"center"}>
-                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontSize={60} fontFamily={"Josefin Sans"} textTransform={"uppercase"}>Meet the
+                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontSize={60}
+                                         fontFamily={"Josefin Sans"} textTransform={"uppercase"}>Meet the
                                     nft</Heading>
-                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontSize={60} fontFamily={"Josefin Sans"}
+                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontSize={60}
+                                         fontFamily={"Josefin Sans"}
                                          textTransform={"uppercase"}>Bulls</Heading>
                             </Box>
                             <Box w={["70%"]} mx={"auto"} mt={3}>
-                                <Text textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Roboto"} textAlign={"center"} fontSize={25}>
+                                <Text textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Roboto"}
+                                      textAlign={"center"} fontSize={25}>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu velit id erat
                                     posuere
                                     convallis. Nam vestibulum, massa ut ultrices rutrum, augue nisl tincidunt sem, quis
@@ -274,7 +301,7 @@ const Home = (props: HomeProps) => {
                                 </Text>
                             </Box>
                             <Box mt={10}>
-                                <Grid gridGap={5} gridTemplateColumns={"1fr 1fr 1fr 1fr"}>
+                                <Grid gridGap={5} gridTemplateColumns={["1fr", "1fr 1fr", "1fr 1fr 1fr 1fr"]}>
                                     <Img boxShadow={"2xl"} src={img0}/>
                                     <Img boxShadow={"2xl"} src={img4}/>
                                     <Img boxShadow={"2xl"} src={img2}/>
@@ -282,17 +309,19 @@ const Home = (props: HomeProps) => {
                                 </Grid>
                             </Box>
                         </Box>
-                    </Flex>
+                    </Grid>
                 </Box>
-                <Box __css={{height: "100vh"}} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
+                <Box pb={10} mt={[10, 10, 10, 10, 0]} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
                     <Flex justifyContent={"center"} alignItems={"center"} height={"100%"}>
                         <Box pt={6}>
                             <Box textAlign={"center"}>
-                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontSize={60}>THE NFT</Heading>
-                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontSize={60}>ROADMAP</Heading>
+                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
+                                         fontSize={60}>THE NFT</Heading>
+                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
+                                         fontSize={60}>ROADMAP</Heading>
                             </Box>
                             <Box mx={"auto"} mt={3}>
-                                <Grid gridGap={5} gridTemplateColumns={"1fr 1fr"}>
+                                <Grid gridGap={5} gridTemplateColumns={["1fr", "1fr", "1fr 1fr"]}>
                                     <RoadMapComp heading={"COLLABORATIONS"}
                                                  text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and will host CCC branded merchandise as well"}/>
                                     <RoadMapComp heading={"PODCAST"}
@@ -306,16 +335,19 @@ const Home = (props: HomeProps) => {
                         </Box>
                     </Flex>
                 </Box>
-                <Box pt={40} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
+            </Box>
+            <Box bgColor={"black"}>
+                <Box py={30} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
                     <Box textAlign={"center"}>
-                        <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"} fontSize={60}>GET THE FAQS</Heading>
+                        <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
+                                 fontSize={60}>GET THE FAQS</Heading>
                     </Box>
-                    <Box w={"100%"} h={1000} mx={"auto"}>
+                    <Box w={"100%"} h={'auto'} mx={"auto"}>
                         <Faq faqs={faqs}/>
                     </Box>
                 </Box>
             </Box>
-            <Box bgColor={"black"}>
+            <Box bgColor={"white"}>
                 <Box w={["90%", "85%", "70%", "60%"]} py={10} color={"white"} mx={"auto"}>
                     <Footer/>
                 </Box>
