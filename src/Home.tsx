@@ -289,7 +289,7 @@ const Home = (props: HomeProps) => {
                                          fontFamily={"Josefin Sans"}
                                          textTransform={"uppercase"}>Bulls</Heading>
                             </Box>
-                            <Box w={["70%"]} mx={"auto"} mt={3}>
+                            <Box w={["90%", "70%"]} mx={"auto"} mt={3}>
                                 <Text textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Roboto"}
                                       textAlign={"center"} fontSize={25}>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu velit id erat
