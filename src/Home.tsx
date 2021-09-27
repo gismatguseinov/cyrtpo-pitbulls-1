@@ -347,8 +347,8 @@ const Home = (props: HomeProps) => {
                     </Box>
                 </Box>
             </Box>
-            <Box bgColor={"white"}>
-                <Box w={["90%", "85%", "70%", "60%"]} py={10} color={"white"} mx={"auto"}>
+            <Box bgColor={"#0e0e0e"} borderTop={"1px solid white"}>
+                <Box w={["90%", "85%", "70%", "60%"]} py={4} color={"white"} mx={"auto"}>
                     <Footer/>
                 </Box>
             </Box>
