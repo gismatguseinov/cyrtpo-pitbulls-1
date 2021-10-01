@@ -17,6 +17,10 @@ import {
 import {Box, Button, Flex, Grid, Heading, Img, Text, useToast} from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import ImageChanger from "./components/ImageChanger";
+import {motion} from 'framer-motion';
+
+import {VerticalTimeline, VerticalTimelineElement} from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
 
 import img0 from "./assets/pic/0.webp";
 import img1 from "./assets/pic/1.webp";
@@ -26,7 +30,8 @@ import img4 from "./assets/pic/4.webp";
 import img5 from "./assets/pic/5.webp";
 import img6 from "./assets/pic/6.webp";
 
-import bg from './assets/bg.jpeg';
+import bg from './assets/bg_11.webp';
+import eye from "./assets/pit_blur.png";
 
 import Faq from "./components/Faq";
 import faqs from "./faqs";
@@ -34,6 +39,8 @@ import Footer from "./components/Footer";
 
 import "@fontsource/josefin-sans";
 import "@fontsource/roboto";
+import ImageSetChanger from "./components/ImageSetChanger";
+import PitbullDeck from "./components/PitbullDeck";
 
 
 export interface HomeProps {
@@ -52,8 +59,7 @@ interface RoadMapCompProps {
 
 const RoadMapComp = (props: RoadMapCompProps) => {
     return (
-        <Box boxShadow={"2xl"} textShadow={"2px 2px #000000"} color={"white"} padding={6} borderRadius={2}
-             border={"1px solid #ccc"}>
+        <Box borderRadius={2}>
             <Heading fontFamily={"Josefin Sans"}>{props.heading}</Heading>
             <Text fontFamily={"Roboto"} mt={6}>
                 {props.text}
@@ -182,161 +188,219 @@ const Home = (props: HomeProps) => {
 
 
     return (
-        <Box>
-            <Box w={"100%"} position={["fixed"]}>
+        <Box backgroundSize={"99%"} backgroundPosition={"center"} backgroundColor={"black"} backgroundImage={bg}>
+            <Box zIndex={100} w={"100%"} position={["fixed"]}>
                 <Navbar/>
             </Box>
-            <Box backgroundSize={"cover"} backgroundImage={bg}>
-                <Box pt={24} height={["auto", "auto", "auto", "auto", "100vh"]} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
+            <Box>
+                <Box pt={24} height={["auto", "auto", "auto", "auto", "100vh"]} pb={10} w={["90%", "85%", "70%", "60%"]}
+                     mx={"auto"}>
                     <Grid placeItems={"center"} gridTemplateColumns={"1fr"} height={"100%"}>
                         <Box>
-                            <Grid gridGap={5} placeItems={"center"}
+                            <Grid gridGap={5} justifyContent={"space-around"} placeItems={"center"}
                                   gridTemplateColumns={["1fr", "1fr", "1fr", "1fr", "1fr 1fr"]}>
-                                <Box w={"100%"}>
+                                <motion.div initial={{opacity: 0, marginLeft: -1000}}
+                                            animate={{opacity: 1, marginLeft: 0}}
+                                            transition={{duration: 2}}>
                                     <ImageChanger/>
-                                </Box>
-                                <Grid w={"100%"} placeItems={"center"} gridTemplateColumns={"1fr"}>
-                                    <Box textAlign={"center"}>
-                                        <Heading fontSize={22} color={"white"} textShadow={"2px 2px #000000"}
-                                                 fontFamily={"Josefin Sans"} textTransform={"uppercase"}>Welcome
-                                            to the</Heading>
-                                        <Box mt={10}>
-                                            <Heading textShadow={"2px 2px #000000"} color={"white"}
-                                                     fontFamily={"Josefin Sans"} fontSize={[50, 80]}>CRYPTO</Heading>
-                                            <Heading textShadow={"2px 2px #000000"} color={"white"}
-                                                     fontFamily={"Josefin Sans"} fontSize={[50, 80]}>WILDLINGS</Heading>
-                                            <Heading textShadow={"2px 2px #000000"} color={"white"}
-                                                     fontFamily={"Josefin Sans"} fontSize={[50, 80]}>OF THE</Heading>
-                                            <Heading textShadow={"2px 2px #000000"} color={"white"}
-                                                     fontFamily={"Josefin Sans"} fontSize={[50, 80]}>DAWN</Heading>
+                                </motion.div>
+                                <motion.div initial={{opacity: 0, marginRight: -1000}}
+                                            animate={{opacity: 1, marginRight: 0}}
+                                            transition={{duration: 2}}>
+                                    <Grid w={"100%"} placeItems={"center"} gridTemplateColumns={"1fr"}>
+                                        <Box textAlign={"center"}>
+                                            <Heading fontSize={22} color={"white"}
+                                                     fontFamily={"Josefin Sans"} textTransform={"uppercase"}>Welcome
+                                                to the</Heading>
+                                            <Box mt={10}>
+                                                <Heading color={"white"}
+                                                         fontFamily={"Josefin Sans"}
+                                                         fontSize={[40, 80]}>CRYPTO</Heading>
+                                                <Heading color={"white"}
+                                                         fontFamily={"Josefin Sans"}
+                                                         fontSize={[40, 80]}>WILDLINGS</Heading>
+                                                <Heading color={"white"}
+                                                         fontFamily={"Josefin Sans"} fontSize={[40, 80]}>OF
+                                                    THE</Heading>
+                                                <Heading color={"white"}
+                                                         fontFamily={"Josefin Sans"} fontSize={[40, 80]}>DAWN</Heading>
+                                            </Box>
+                                            <Box mt={10}>
+                                                {
+                                                    !isLoading && (
+                                                        isMobile ? <Text color={"white"}
+                                                                         fontFamily={"Josefin Sans"}
+                                                            >You seem to be using a
+                                                                mobile device</Text> :
+                                                            isSoldOut ? (
+                                                                    <Text color={"white"}
+                                                                          fontFamily={"Josefin Sans"}>Solt
+                                                                        Out!
+                                                                        See
+                                                                        Collection on Solanart.io
+                                                                        of {itemsAvailable} bulls</Text>
+                                                                ) :
+                                                                <Text color={"white"}
+                                                                      fontFamily={"Josefin Sans"}>Minted: {itemsRedeemed}/{itemsAvailable}</Text>
+                                                    )
+                                                }
+                                                <Button onClick={isMobile || isSoldOut ? () => {
+                                                    const url = new URL("https://solanart.io");
+                                                    const win = window.open(url, "_blank");
+                                                    if (win) win.focus();
+                                                } : !wallet ? () => walletDialog.setOpen(true) : onMint}
+                                                        fontFamily={"Josefin Sans"}
+                                                        _hover={{bgColor: "white", color: "black"}} pt={1}
+                                                        mt={3} borderRadius={8}
+                                                        boxShadow={"0px 0px 37px 8px rgba(0,0,0,0.75)"}
+                                                        isLoading={isMinting || isLoading}
+                                                        bgColor={"black"}
+                                                        color={"white"}>
+                                                    {isMobile || isSoldOut ? "SOLANART" : wallet ? "MINT" : "CONNECT YOUR WALLET"}
+                                                </Button>
+                                            </Box>
                                         </Box>
-                                        <Box mt={10}>
-                                            {
-                                                !isLoading && (
-                                                    isMobile ? <Text textShadow={"2px 2px #000000"} color={"white"}
-                                                                     fontFamily={"Josefin Sans"} fontStyle={"italic"}>You seem to be using a mobile device</Text> :
-                                                    isSoldOut ? (
-                                                            <Text textShadow={"2px 2px #000000"} color={"white"}
-                                                                  fontFamily={"Josefin Sans"} fontStyle={"italic"}>Solt Out!
-                                                                See
-                                                                Collection on Solanart.io of {itemsAvailable} bulls</Text>
-                                                        ) :
-                                                        <Text textShadow={"2px 2px #000000"} color={"white"}
-                                                              fontFamily={"Josefin Sans"}
-                                                              fontStyle={"italic"}>Minted: {itemsRedeemed}/{itemsAvailable}</Text>
-                                                )
-                                            }
-                                            <Button onClick={ isMobile || isSoldOut ? () => {
-                                                const url = new URL("https://solanart.io");
-                                                const win = window.open(url, "_blank");
-                                                if (win) win.focus();
-                                            } : !wallet ? () => walletDialog.setOpen(true) : onMint}
-                                                    fontFamily={"Josefin Sans"} _hover={{bgColor: "#262626"}} pt={1}
-                                                    mt={3} borderRadius={0}
-                                                    isLoading={isMinting || isLoading}
-                                                    bgColor={"black"}
-                                                    color={"white"}>
-                                                {isMobile || isSoldOut ? "SOLANART" : wallet ? "MINT" : "CONNECT YOUR WALLET"}
-                                            </Button>
-                                        </Box>
-                                    </Box>
-                                </Grid>
+                                    </Grid>
+                                </motion.div>
                             </Grid>
                         </Box>
                     </Grid>
                 </Box>
-                <Box mt={10} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
-                    <Grid placeItems={"center"} gridTemplateColumns={"1fr"} height={"100%"}>
-                        <Box>
-                            <Box textAlign={"center"}>
-                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
-                                         fontSize={[50, 60]}>Lorem Ipsum</Heading>
-                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
-                                         fontSize={[50, 60]}>Sit Dolor &</Heading>
-                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
-                                         fontSize={[50, 60]}>Ametsaltabme</Heading>
+                <Box backgroundColor={"rgba(0,0,0,0.5)"} py={10} backDropFilter={"blur(10px)"}>
+                    <Box my={10} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
+                        <Grid placeItems={"center"} gridTemplateColumns={"1fr"} height={"100%"}>
+                            <Box>
+                                <Box textAlign={"center"}>
+                                    <Heading color={"white"} fontFamily={"Josefin Sans"}
+                                             fontSize={[40, 60]}>Lorem Ipsum</Heading>
+                                    <Heading color={"white"} fontFamily={"Josefin Sans"}
+                                             fontSize={[40, 60]}>Sit Dolor &</Heading>
+                                    <Heading color={"white"} fontFamily={"Josefin Sans"}
+                                             fontSize={[40, 60]}>Ametsaltabme</Heading>
+                                </Box>
+                                <Box w={["90%", "70%"]} mx={"auto"} mt={3}>
+                                    <Text color={"white"} fontFamily={"Roboto"} textAlign={"center"} fontSize={[16, 20]}>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu velit id erat
+                                        posuere
+                                        convallis. Nam vestibulum, massa ut ultrices rutrum, augue nisl tincidunt sem,
+                                        quis
+                                        ornare
+                                        nulla justo at arcu. Mauris consectetur dictum turpis non ultricies. Cras
+                                        pellentesque
+                                        ligula sit amet mi tristique gravida. Curabitur tempus lacus lacus, a elementum
+                                        arcu
+                                        faucibus ut. Quisque in ullamcorper tortor, eu iaculis sapien. Nunc at laoreet
+                                        enim.
+                                        Donec
+                                        vehicula lobortis tempor.
+                                    </Text>
+                                </Box>
+                                <Box w={"fit-content"} mx={"auto"} mt={3}>
+                                    <Button boxShadow={"0px 0px 37px 8px rgba(0,0,0,0.75)"}
+                                            fontFamily={"Josefin Sans"} _hover={{bgColor: "black", color: "white"}}
+                                            pt={1} mt={3}
+                                            borderRadius={8} bgColor={"white"}
+                                            color={"black"}>JOIN DISCORD</Button>
+                                </Box>
                             </Box>
-                            <Box w={["90%", "70%"]} mx={"auto"} mt={3}>
-                                <Text color={"white"} fontFamily={"Roboto"} textAlign={"center"} fontSize={20}>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu velit id erat
-                                    posuere
-                                    convallis. Nam vestibulum, massa ut ultrices rutrum, augue nisl tincidunt sem, quis
-                                    ornare
-                                    nulla justo at arcu. Mauris consectetur dictum turpis non ultricies. Cras
-                                    pellentesque
-                                    ligula sit amet mi tristique gravida. Curabitur tempus lacus lacus, a elementum arcu
-                                    faucibus ut. Quisque in ullamcorper tortor, eu iaculis sapien. Nunc at laoreet enim.
-                                    Donec
-                                    vehicula lobortis tempor.
-                                </Text>
-                            </Box>
-                            <Box w={"fit-content"} mx={"auto"} mt={3}>
-                                <Button fontFamily={"Josefin Sans"} _hover={{bgColor: "#262626"}} pt={1} mt={3}
-                                        borderRadius={0} bgColor={"black"}
-                                        color={"white"}>JOIN DISCORD</Button>
-                            </Box>
-                        </Box>
-                    </Grid>
+                        </Grid>
+                    </Box>
                 </Box>
-                <Box h={["auto", "auto", "100vh"]} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
-                    <Grid placeItems={"center"} pt={10} gridTemplateColumns={"1fr"} height={"100%"}>
-                        <Box>
-                            <Box textAlign={"center"}>
-                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontSize={60}
-                                         fontFamily={"Josefin Sans"} textTransform={"uppercase"}>Meet the
-                                    nft</Heading>
-                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontSize={60}
-                                         fontFamily={"Josefin Sans"}
-                                         textTransform={"uppercase"}>Bulls</Heading>
+                <Box bgRepeat={"no-repeat"}>
+                    <Box h={["auto", "auto", "auto"]} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
+                        <Grid placeItems={"center"} gridTemplateColumns={"1fr"} py={40} height={"100%"}>
+                            <Box>
+                                <Box textAlign={"center"}>
+                                    <Heading color={"white"} fontSize={[40, 60]}
+                                             fontFamily={"Josefin Sans"} textTransform={"uppercase"}>Meet the
+                                        nft</Heading>
+                                    <Heading color={"white"} fontSize={[40, 60]}
+                                             fontFamily={"Josefin Sans"}
+                                             textTransform={"uppercase"}>Bulls</Heading>
+                                </Box>
+                                <Box w={["90%", "70%"]} mx={"auto"} mt={3}>
+                                    <Text color={"white"} fontFamily={"Roboto"}
+                                          textAlign={"center"} fontSize={[16, 20]}>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu velit id erat
+                                        posuere
+                                        convallis. Nam vestibulum, massa ut ultrices rutrum, augue nisl tincidunt sem,
+                                        quis
+                                        ornare
+                                        nulla justo at arcu. Mauris consectetur dictum turpis non ultricies. Cras
+                                        pellentesque
+                                    </Text>
+                                </Box>
+                                <Box mt={10}>
+                                    <ImageSetChanger/>
+                                </Box>
                             </Box>
-                            <Box w={["90%", "70%"]} mx={"auto"} mt={3}>
-                                <Text textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Roboto"}
-                                      textAlign={"center"} fontSize={25}>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu velit id erat
-                                    posuere
-                                    convallis. Nam vestibulum, massa ut ultrices rutrum, augue nisl tincidunt sem, quis
-                                    ornare
-                                    nulla justo at arcu. Mauris consectetur dictum turpis non ultricies. Cras
-                                    pellentesque
-                                </Text>
-                            </Box>
-                            <Box mt={10}>
-                                <Grid gridGap={5} gridTemplateColumns={["1fr", "1fr 1fr", "1fr 1fr 1fr 1fr"]}>
-                                    <Img boxShadow={"2xl"} src={img0}/>
-                                    <Img boxShadow={"2xl"} src={img4}/>
-                                    <Img boxShadow={"2xl"} src={img2}/>
-                                    <Img boxShadow={"2xl"} src={img3}/>
-                                </Grid>
-                            </Box>
-                        </Box>
-                    </Grid>
+                        </Grid>
+                    </Box>
                 </Box>
-                <Box pb={10} mt={[10, 10, 10, 10, 0]} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
-                    <Flex justifyContent={"center"} alignItems={"center"} height={"100%"}>
-                        <Box pt={6}>
-                            <Box textAlign={"center"}>
-                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
-                                         fontSize={60}>THE NFT</Heading>
-                                <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
-                                         fontSize={60}>ROADMAP</Heading>
+                <Box backgroundColor={"rgba(0,0,0,0.5)"}>
+                    <Box pb={10} mt={[10, 10, 10, 10, 0]} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
+                        <Flex justifyContent={"center"} alignItems={"center"} height={"100%"}>
+                            <Box pt={20}>
+                                <Box textAlign={"center"}>
+                                    <Heading color={"white"} fontFamily={"Josefin Sans"}
+                                             fontSize={60}>THE NFT</Heading>
+                                    <Heading color={"white"} fontFamily={"Josefin Sans"}
+                                             fontSize={60}>ROADMAP</Heading>
+                                </Box>
+                                <Box mx={"auto"} py={10}>
+                                    <Box>
+                                        <VerticalTimeline>
+                                            <VerticalTimelineElement
+                                                iconStyle={{background: 'black', color: '#fff'}}
+                                            >
+                                                <RoadMapComp heading={"COLLABORATIONS"}
+                                                             text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and will host CCC branded merchandise as well"}/>
+                                            </VerticalTimelineElement>
+                                            <VerticalTimelineElement
+                                                className="vertical-timeline-element--work"
+                                                iconStyle={{background: 'black', color: '#fff'}}
+                                            >
+                                                <RoadMapComp heading={"PODCAST"}
+                                                             text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and will host CCC branded merchandise as well as limited collaborations. Stay tuned for collaboration announcements in the discord."}/>
+                                            </VerticalTimelineElement>
+                                            <VerticalTimelineElement
+                                                className="vertical-timeline-element--work"
+                                                iconStyle={{background: 'black', color: '#fff'}}
+                                            >
+                                                <RoadMapComp heading={"PODCAST"}
+                                                             text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and will host CCC branded merchandise as well as limited collaborations. Stay tuned for collaboration announcements in the discord."}/>
+                                            </VerticalTimelineElement>
+                                            <VerticalTimelineElement
+                                                className="vertical-timeline-element--work"
+                                                iconStyle={{background: 'black', color: '#fff'}}
+                                            >
+                                                <RoadMapComp heading={"PODCAST"}
+                                                             text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and will host CCC branded merchandise as well as limited collaborations. Stay tuned for collaboration announcements in the discord."}/>
+                                            </VerticalTimelineElement>
+                                            <VerticalTimelineElement
+                                                className="vertical-timeline-element--education"
+                                                iconStyle={{background: 'black', color: '#fff'}}
+                                            >
+                                                <RoadMapComp heading={"TRADE SHOWS"}
+                                                             text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and "}/>
+                                            </VerticalTimelineElement>
+                                            <VerticalTimelineElement
+                                                className="vertical-timeline-element--education"
+                                                iconStyle={{background: 'black', color: '#fff'}}
+                                            >
+                                                <RoadMapComp heading={"GAMIFICATION"}
+                                                             text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and will host CCC branded merchandise as well as limited collaborations. "}/>
+                                            </VerticalTimelineElement>
+                                        </VerticalTimeline>
+
+                                    </Box>
+                                </Box>
                             </Box>
-                            <Box mx={"auto"} mt={3}>
-                                <Grid gridGap={5} gridTemplateColumns={["1fr", "1fr", "1fr 1fr"]}>
-                                    <RoadMapComp heading={"COLLABORATIONS"}
-                                                 text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and will host CCC branded merchandise as well"}/>
-                                    <RoadMapComp heading={"PODCAST"}
-                                                 text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and will host CCC branded merchandise as well as limited collaborations. Stay tuned for collaboration announcements in the discord."}/>
-                                    <RoadMapComp heading={"TRADE SHOWS"}
-                                                 text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and "}/>
-                                    <RoadMapComp heading={"GAMIFICATION"}
-                                                 text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and will host CCC branded merchandise as well as limited collaborations. "}/>
-                                </Grid>
-                            </Box>
-                        </Box>
-                    </Flex>
+                        </Flex>
+                    </Box>
                 </Box>
             </Box>
-            <Box bgColor={"black"}>
+            <Box pb={12} bgColor={"black"}>
                 <Box py={30} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
                     <Box textAlign={"center"}>
                         <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
@@ -347,41 +411,13 @@ const Home = (props: HomeProps) => {
                     </Box>
                 </Box>
             </Box>
-            <Box bgColor={"#0e0e0e"} borderTop={"1px solid white"}>
+            <Box bgColor={"black"} borderTop={"1px solid white"}>
                 <Box w={["90%", "85%", "70%", "60%"]} py={4} color={"white"} mx={"auto"}>
                     <Footer/>
                 </Box>
             </Box>
         </Box>
     )
-
-    // return (
-    //     <Box>
-    //         {wallet && (
-    //             <Text>Address: {shortenAddress(wallet.publicKey.toBase58() || "")}</Text>
-    //         )}
-    //
-    //         {wallet && (
-    //             <Text>Balance: {(balance || 0).toLocaleString()} SOL</Text>
-    //         )}
-    //
-    //         <Box>
-    //             {!wallet ? (
-    //                 <Button onClick={() => walletDialog.setOpen(true)}>Connect Wallet</Button>
-    //             ) : (
-    //                 <Box>
-    //                     <p>{itemsRedeemed}/{itemsAvailable}</p>
-    //                     <Button
-    //                         disabled={isSoldOut || isMinting || !isActive}
-    //                         onClick={onMint}
-    //                     >
-    //                         {isSoldOut ? "SOLD OUT" : "MINT"}
-    //                     </Button>
-    //                 </Box>
-    //             )}
-    //         </Box>
-    //     </Box>
-    // );
 };
 
 export default Home;

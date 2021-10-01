@@ -16,14 +16,14 @@ export default function ImageChanger() {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentImage((current) => (current + 1) % imgs.length);
-        }, 1000)
+        }, 500)
 
         return () => clearInterval(interval);
     }, [])
 
     return (
-        <Box boxShadow={"2xl"}>
-            <Img w={"100%"} src={imgs[currentImage]}/>
+        <Box>
+            <Img boxShadow={"0px 0px 37px 8px rgba(0,0,0,0.75)"} borderRadius={16} w={"100%"} src={imgs[currentImage]}/>
         </Box>
     )
 }
