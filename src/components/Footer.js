@@ -1,4 +1,4 @@
-import {Box, Flex, Grid, HStack, Text} from "@chakra-ui/react";
+import {Box, Grid, HStack, Text} from "@chakra-ui/react";
 import {FaDiscord, FaInstagram, FaTwitter} from "react-icons/all";
 
 export default function Footer() {

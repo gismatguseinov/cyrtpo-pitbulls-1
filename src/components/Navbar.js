@@ -1,6 +1,6 @@
 import {Box, Flex, HStack, Img, Spacer} from "@chakra-ui/react";
 import logo from '../assets/slack.svg';
-import {FaDiscord, FaInstagram, FaTwitter} from "react-icons/all";
+import {FaDiscord, FaTwitter} from "react-icons/all";
 
 export default function Navbar({}) {
     return (
@@ -11,9 +11,6 @@ export default function Navbar({}) {
                     <Spacer/>
                     <Box ml={"auto"}>
                         <HStack spacing={3}>
-                            <Box _hover={{color: "white", bgColor: "black", cursor: "pointer"}} transition={"200ms"} color={"black"} p={2} borderRadius={16} backgroundColor={"white"}>
-                                <FaInstagram/>
-                            </Box>
                             <Box _hover={{color: "white", bgColor: "black", cursor: "pointer"}} transition={"200ms"} color={"black"} p={2} borderRadius={16} backgroundColor={"white"}>
                                 <FaDiscord/>
                             </Box>

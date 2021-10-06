@@ -54,16 +54,12 @@ export interface HomeProps {
 
 interface RoadMapCompProps {
     heading: string;
-    text: string;
 }
 
 const RoadMapComp = (props: RoadMapCompProps) => {
     return (
         <Box borderRadius={2}>
-            <Heading fontFamily={"Josefin Sans"}>{props.heading}</Heading>
-            <Text fontFamily={"Roboto"} mt={6}>
-                {props.text}
-            </Text>
+            <Heading textOverflow={"ellipsis"} whiteSpace={"nowrap"} fontFamily={"Josefin Sans"}>{props.heading}</Heading>
         </Box>
     )
 }
@@ -215,17 +211,14 @@ const Home = (props: HomeProps) => {
                                             <Box mt={10}>
                                                 <Heading color={"white"}
                                                          fontFamily={"Josefin Sans"}
-                                                         fontSize={[40, 80]}>CRYPTO</Heading>
+                                                         fontSize={[40, 80]}>REBELLIOUS</Heading>
                                                 <Heading color={"white"}
                                                          fontFamily={"Josefin Sans"}
-                                                         fontSize={[40, 80]}>WILDLINGS</Heading>
+                                                         fontSize={[40, 80]}>DOGS</Heading>
                                                 <Heading color={"white"}
-                                                         fontFamily={"Josefin Sans"} fontSize={[40, 80]}>OF
-                                                    THE</Heading>
-                                                <Heading color={"white"}
-                                                         fontFamily={"Josefin Sans"} fontSize={[40, 80]}>DAWN</Heading>
+                                                         fontFamily={"Josefin Sans"} fontSize={[40, 80]}>CLUB</Heading>
                                             </Box>
-                                            <Box mt={10}>
+                                            <Box mt={10} display={"none"}>
                                                 {
                                                     !isLoading && (
                                                         isMobile ? <Text color={"white"}
@@ -272,27 +265,12 @@ const Home = (props: HomeProps) => {
                             <Box>
                                 <Box textAlign={"center"}>
                                     <Heading color={"white"} fontFamily={"Josefin Sans"}
-                                             fontSize={[40, 60]}>Lorem Ipsum</Heading>
-                                    <Heading color={"white"} fontFamily={"Josefin Sans"}
-                                             fontSize={[40, 60]}>Sit Dolor &</Heading>
-                                    <Heading color={"white"} fontFamily={"Josefin Sans"}
-                                             fontSize={[40, 60]}>Ametsaltabme</Heading>
+                                             fontSize={[40, 60]}>Rebellious Dogs Club Collection</Heading>
                                 </Box>
                                 <Box w={["90%", "70%"]} mx={"auto"} mt={3}>
                                     <Text color={"white"} fontFamily={"Roboto"} textAlign={"center"} fontSize={[16, 20]}>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu velit id erat
-                                        posuere
-                                        convallis. Nam vestibulum, massa ut ultrices rutrum, augue nisl tincidunt sem,
-                                        quis
-                                        ornare
-                                        nulla justo at arcu. Mauris consectetur dictum turpis non ultricies. Cras
-                                        pellentesque
-                                        ligula sit amet mi tristique gravida. Curabitur tempus lacus lacus, a elementum
-                                        arcu
-                                        faucibus ut. Quisque in ullamcorper tortor, eu iaculis sapien. Nunc at laoreet
-                                        enim.
-                                        Donec
-                                        vehicula lobortis tempor.
+                                        Rebellious Dogs are Collection of 7777 NFTs on Solana Blockchain. Dogs are 3D characters with over 60 unique attributes. The uniqueness of the attributes are that each of them
+                                        are built as 3D sculpted and hand-drawn.
                                     </Text>
                                 </Box>
                                 <Box w={"fit-content"} mx={"auto"} mt={3}>
@@ -312,22 +290,16 @@ const Home = (props: HomeProps) => {
                             <Box>
                                 <Box textAlign={"center"}>
                                     <Heading color={"white"} fontSize={[40, 60]}
-                                             fontFamily={"Josefin Sans"} textTransform={"uppercase"}>Meet the
-                                        nft</Heading>
+                                             fontFamily={"Josefin Sans"} textTransform={"uppercase"}>MEET THE
+                                        NFT</Heading>
                                     <Heading color={"white"} fontSize={[40, 60]}
                                              fontFamily={"Josefin Sans"}
-                                             textTransform={"uppercase"}>Bulls</Heading>
+                                             textTransform={"uppercase"}>DOGS</Heading>
                                 </Box>
                                 <Box w={["90%", "70%"]} mx={"auto"} mt={3}>
                                     <Text color={"white"} fontFamily={"Roboto"}
                                           textAlign={"center"} fontSize={[16, 20]}>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu velit id erat
-                                        posuere
-                                        convallis. Nam vestibulum, massa ut ultrices rutrum, augue nisl tincidunt sem,
-                                        quis
-                                        ornare
-                                        nulla justo at arcu. Mauris consectetur dictum turpis non ultricies. Cras
-                                        pellentesque
+                                        7777 Randomly Generated 3D Characters with over 60 unique attributes
                                     </Text>
                                 </Box>
                                 <Box mt={10}>
@@ -337,8 +309,8 @@ const Home = (props: HomeProps) => {
                         </Grid>
                     </Box>
                 </Box>
-                <Box backgroundColor={"rgba(0,0,0,0.5)"}>
-                    <Box pb={10} mt={[10, 10, 10, 10, 0]} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
+                <Box backgroundColor={"rgba(0,0,0,0.5)"} display={"none"}>
+                    <Box pb={10} mt={[10, 10, 10, 10, 0]} mx={"auto"}>
                         <Flex justifyContent={"center"} alignItems={"center"} height={"100%"}>
                             <Box pt={20}>
                                 <Box textAlign={"center"}>
@@ -353,43 +325,37 @@ const Home = (props: HomeProps) => {
                                             <VerticalTimelineElement
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
-                                                <RoadMapComp heading={"COLLABORATIONS"}
-                                                             text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and will host CCC branded merchandise as well"}/>
+                                                <RoadMapComp heading={"✅Rebellious Dogs Club Established"}/>
                                             </VerticalTimelineElement>
                                             <VerticalTimelineElement
                                                 className="vertical-timeline-element--work"
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
-                                                <RoadMapComp heading={"PODCAST"}
-                                                             text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and will host CCC branded merchandise as well as limited collaborations. Stay tuned for collaboration announcements in the discord."}/>
+                                                <RoadMapComp heading={"PODCAST"}/>
                                             </VerticalTimelineElement>
                                             <VerticalTimelineElement
                                                 className="vertical-timeline-element--work"
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
-                                                <RoadMapComp heading={"PODCAST"}
-                                                             text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and will host CCC branded merchandise as well as limited collaborations. Stay tuned for collaboration announcements in the discord."}/>
+                                                <RoadMapComp heading={"PODCAST"} />
                                             </VerticalTimelineElement>
                                             <VerticalTimelineElement
                                                 className="vertical-timeline-element--work"
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
-                                                <RoadMapComp heading={"PODCAST"}
-                                                             text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and will host CCC branded merchandise as well as limited collaborations. Stay tuned for collaboration announcements in the discord."}/>
+                                                <RoadMapComp heading={"PODCAST"}/>
                                             </VerticalTimelineElement>
                                             <VerticalTimelineElement
                                                 className="vertical-timeline-element--education"
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
-                                                <RoadMapComp heading={"TRADE SHOWS"}
-                                                             text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and "}/>
+                                                <RoadMapComp heading={"TRADE SHOWS"} />
                                             </VerticalTimelineElement>
                                             <VerticalTimelineElement
                                                 className="vertical-timeline-element--education"
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
-                                                <RoadMapComp heading={"GAMIFICATION"}
-                                                             text={"Our team of artists and developers will be working in a collaborative effort to merge CCC with leading brands in the cannabis industry to create exclusive merchandise for NFTokin holders. Our merchandise store is currently being built out and will host CCC branded merchandise as well as limited collaborations. "}/>
+                                                <RoadMapComp heading={"GAMIFICATION"} />
                                             </VerticalTimelineElement>
                                         </VerticalTimeline>
 
@@ -401,7 +367,7 @@ const Home = (props: HomeProps) => {
                 </Box>
             </Box>
             <Box pb={12} bgColor={"black"}>
-                <Box py={30} w={["90%", "85%", "70%", "60%"]} mx={"auto"}>
+                <Box py={30} w={["90%", "85%", "70%", "60%"]} mx={"auto"} display={"none"}>
                     <Box textAlign={"center"}>
                         <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
                                  fontSize={60}>GET THE FAQS</Heading>
