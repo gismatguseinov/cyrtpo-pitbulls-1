@@ -24,16 +24,9 @@ import {motion} from 'framer-motion';
 import {VerticalTimeline, VerticalTimelineElement} from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 
-import img0 from "./assets/pic/8.webp";
-import img1 from "./assets/pic/10.webp";
-import img2 from "./assets/pic/11.webp";
-import img3 from "./assets/pic/13.webp";
-import img4 from "./assets/pic/14.webp";
 import img5 from "./assets/pic/15.webp";
 import img6 from "./assets/pic/20.webp";
-import img7 from "./assets/pic/63.webp";
 import img8 from "./assets/pic/90.webp";
-import img9 from "./assets/pic/99.webp";
 
 import bg from './assets/bg_11.webp';
 import eye from "./assets/pit_blur.png";
@@ -46,6 +39,7 @@ import "@fontsource/josefin-sans";
 import "@fontsource/roboto";
 import ImageSetChanger from "./components/ImageSetChanger";
 import PitbullDeck from "./components/PitbullDeck";
+import { FaCheck, FaTimes } from "react-icons/fa";
 
 
 export interface HomeProps {
@@ -333,13 +327,14 @@ const Home = (props: HomeProps) => {
                                     <Box>
                                         <VerticalTimeline>
                                             <VerticalTimelineElement
+                                                icon={<FaCheck />}
                                                 iconStyle={{background: 'black', color: '#fff', padding: "1px"}}
-                                                icon={<Text fontSize={"25pt"} mt={2} textAlign={"center"}>0%</Text>}
                                             >
                                                 <RoadMapComp heading={"Rebellious Dogs Club Established"}
                                                              text={"The team of 14 people worked hard together to create the ultime, the most rebellious dogs that the NFT market has ever seen"}/>
                                             </VerticalTimelineElement>
                                             <VerticalTimelineElement
+                                                icon={<FaCheck />}
                                                 className="vertical-timeline-element--work"
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
@@ -347,6 +342,7 @@ const Home = (props: HomeProps) => {
                                                              text={""}/>
                                             </VerticalTimelineElement>
                                             <VerticalTimelineElement
+                                                icon={<FaTimes />}
                                                 className="vertical-timeline-element--work"
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
@@ -354,6 +350,8 @@ const Home = (props: HomeProps) => {
                                                              text={""}/>
                                             </VerticalTimelineElement>
                                             <VerticalTimelineElement
+                                                icon={<FaTimes />}
+
                                                 className="vertical-timeline-element--work"
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
@@ -361,6 +359,8 @@ const Home = (props: HomeProps) => {
                                                              text={""}/>
                                             </VerticalTimelineElement>
                                             <VerticalTimelineElement
+                                                icon={<FaTimes />}
+
                                                 className="vertical-timeline-element--education"
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
@@ -368,6 +368,8 @@ const Home = (props: HomeProps) => {
                                                              text={""}/>
                                             </VerticalTimelineElement>
                                             <VerticalTimelineElement
+                                                icon={<FaTimes />}
+
                                                 className="vertical-timeline-element--education"
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
@@ -375,6 +377,8 @@ const Home = (props: HomeProps) => {
                                                              text={""}/>
                                             </VerticalTimelineElement>
                                             <VerticalTimelineElement
+                                                icon={<FaTimes />}
+
                                                 className="vertical-timeline-element--education"
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
