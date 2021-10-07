@@ -11,10 +11,18 @@ export default function Navbar({}) {
                     <Spacer/>
                     <Box ml={"auto"}>
                         <HStack spacing={3}>
-                            <Box _hover={{color: "white", bgColor: "black", cursor: "pointer"}} transition={"200ms"} color={"black"} p={2} borderRadius={16} backgroundColor={"white"}>
+                            <Box onClick={() => {
+                                const url = new URL("https://discord.gg/rebelliousdogsclub");
+                                const win = window.open(url, "_blank");
+                                if (win) win.focus();
+                            }} _hover={{color: "white", bgColor: "black", cursor: "pointer"}} transition={"200ms"} color={"black"} p={2} borderRadius={16} backgroundColor={"white"}>
                                 <FaDiscord/>
                             </Box>
-                            <Box _hover={{color: "white", bgColor: "black", cursor: "pointer"}} transition={"200ms"} color={"black"} p={2} borderRadius={16} backgroundColor={"white"}>
+                            <Box onClick={() => {
+                                const url = new URL("https://twitter.com/RebelliousDogs");
+                                const win = window.open(url, "_blank");
+                                if (win) win.focus();
+                            }} _hover={{color: "white", bgColor: "black", cursor: "pointer"}} transition={"200ms"} color={"black"} p={2} borderRadius={16} backgroundColor={"white"}>
                                 <FaTwitter/>
                             </Box>
                         </HStack>

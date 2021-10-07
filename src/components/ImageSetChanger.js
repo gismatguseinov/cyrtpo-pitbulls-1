@@ -1,12 +1,12 @@
 import {Grid, Img} from "@chakra-ui/react";
 import {useEffect, useState} from "react";
-import img0 from "../assets/pic/0.webp";
-import img4 from "../assets/pic/4.webp";
-import img2 from "../assets/pic/2.webp";
-import img3 from "../assets/pic/3.webp";
-import img1 from "../assets/pic/1.webp";
-import img6 from "../assets/pic/6.webp";
-import img5 from "../assets/pic/5.webp";
+import img0 from "../assets/pic/8.webp";
+import img1 from "../assets/pic/10.webp";
+import img2 from "../assets/pic/11.webp";
+import img3 from "../assets/pic/13.webp";
+import img4 from "../assets/pic/14.webp";
+import img5 from "../assets/pic/15.webp";
+import img6 from "../assets/pic/20.webp";
 
 export default function ImageSetChanger() {
 
