@@ -273,8 +273,7 @@ const Home = (props: HomeProps) => {
                                 </Box>
                                 <Box w={["90%", "70%"]} mx={"auto"} mt={3}>
                                     <Text color={"white"} fontFamily={"Roboto"} textAlign={"center"} fontSize={[16, 20]}>
-                                        Rebellious Dogs are Collection of 7777 NFTs on Solana Blockchain. Dogs are 3D characters with over 60 unique attributes. The uniqueness of the attributes are that each of them
-                                        are built as 3D sculpted and hand-drawn.
+                                        Rebellious Dogs are a collection of 7777 NFTs on the Solana Blockchain. Rebellious Dogs are 3D characters with over 60 unique attributes. The uniqueness of the attributes are that each of them were built hand-drawn and carefully 3D sculpted.
                                     </Text>
                                 </Box>
                                 <Box w={"fit-content"} mx={"auto"} mt={3}>
@@ -373,7 +372,7 @@ const Home = (props: HomeProps) => {
                                                 className="vertical-timeline-element--education"
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
-                                                <RoadMapComp heading={"Weekly Buy&Back with 25% Fees"}
+                                                <RoadMapComp heading={"Weekly BuyBack with 25% Fees"}
                                                              text={""}/>
                                             </VerticalTimelineElement>
                                             <VerticalTimelineElement
