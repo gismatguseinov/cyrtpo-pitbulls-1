@@ -14,9 +14,8 @@ import {
     awaitTransactionSignatureConfirmation,
     getCandyMachineState,
     mintOneToken,
-    shortenAddress,
 } from "./candy-machine";
-import {Box, Button, Flex, Grid, Heading, Img, Text, useToast} from "@chakra-ui/react";
+import {Box, Button, Flex, Grid, Heading, Text, useToast} from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import ImageChanger from "./components/ImageChanger";
 import {motion} from 'framer-motion';
@@ -24,12 +23,9 @@ import {motion} from 'framer-motion';
 import {VerticalTimeline, VerticalTimelineElement} from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 
-import img5 from "./assets/pic/15.webp";
-import img6 from "./assets/pic/20.webp";
-import img8 from "./assets/pic/90.webp";
-
 import bg from './assets/bg_11.webp';
-import eye from "./assets/pit_blur.png";
+import banner from './assets/banner.jpg';
+
 
 import Faq from "./components/Faq";
 import faqs from "./faqs";
@@ -38,7 +34,6 @@ import Footer from "./components/Footer";
 import "@fontsource/josefin-sans";
 import "@fontsource/roboto";
 import ImageSetChanger from "./components/ImageSetChanger";
-import PitbullDeck from "./components/PitbullDeck";
 import { FaCheck, FaTimes } from "react-icons/fa";
 
 
@@ -393,7 +388,7 @@ const Home = (props: HomeProps) => {
                     </Box>
                 </Box>
             </Box>
-            <Box pb={12} bgColor={"black"}>
+            <Box height={"700px"} bgColor={"black"} bgPos={"center"} backgroundSize={"cover"} bgImage={banner}>
                 <Box py={30} w={["90%", "85%", "70%", "60%"]} mx={"auto"} display={"none"}>
                     <Box textAlign={"center"}>
                         <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
