@@ -388,7 +388,7 @@ const Home = (props: HomeProps) => {
                     </Box>
                 </Box>
             </Box>
-            <Box height={"700px"} bgColor={"black"} bgPos={"center"} backgroundSize={"cover"} bgImage={banner}>
+            <Box bgColor={"black"} bgPos={"center"} backgroundSize={"cover"}>
                 <Box py={30} w={["90%", "85%", "70%", "60%"]} mx={"auto"} display={"none"}>
                     <Box textAlign={"center"}>
                         <Heading textShadow={"2px 2px #000000"} color={"white"} fontFamily={"Josefin Sans"}
