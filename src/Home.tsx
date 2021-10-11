@@ -366,7 +366,7 @@ const Home = (props: HomeProps) => {
                                                 className="vertical-timeline-element--education"
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
-                                                <RoadMapComp heading={"Weekly BuyBack with 25% Fees"}
+                                                <RoadMapComp heading={"Weekly BuyBack with 50% Fees"}
                                                              text={""}/>
                                             </VerticalTimelineElement>
                                             <VerticalTimelineElement
@@ -376,6 +376,15 @@ const Home = (props: HomeProps) => {
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
                                                 <RoadMapComp heading={"Distribution of 25% Fee to Holders"}
+                                                             text={""}/>
+                                            </VerticalTimelineElement>
+                                            <VerticalTimelineElement
+                                                icon={<FaTimes />}
+
+                                                className="vertical-timeline-element--education"
+                                                iconStyle={{background: 'black', color: '#fff'}}
+                                            >
+                                                <RoadMapComp heading={"Airdrop to Rebellious Dogs holder. Mut.. ? We don't want to spoil the surprise..."}
                                                              text={""}/>
                                             </VerticalTimelineElement>
                                         </VerticalTimeline>
