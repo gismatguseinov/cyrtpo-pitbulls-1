@@ -1,17 +1,14 @@
 import {Box, Img} from "@chakra-ui/react";
-import img1 from '../assets/pic/1.webp';
 import img2 from '../assets/pic/2.webp';
 import img3 from '../assets/pic/3.webp';
 import img4 from '../assets/pic/4.webp';
 import img5 from '../assets/pic/5.webp';
-import img7 from '../assets/pic/7.webp';
-import img8 from '../assets/pic/8.webp';
 
 import {useEffect, useState} from "react";
 
 
 export default function ImageChanger() {
-    const imgs = [img1, img2, img3, img4, img5, img7, img8];
+    const imgs = [img2, img3, img4, img5];
     const [currentImage, setCurrentImage] = useState(0);
 
     useEffect(() => {

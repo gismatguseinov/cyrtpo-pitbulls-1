@@ -24,7 +24,6 @@ import {VerticalTimeline, VerticalTimelineElement} from 'react-vertical-timeline
 import 'react-vertical-timeline-component/style.min.css';
 
 import bg from './assets/bg_11.webp';
-import banner from './assets/banner.jpg';
 
 
 import Faq from "./components/Faq";
