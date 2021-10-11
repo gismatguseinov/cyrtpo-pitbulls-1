@@ -12,7 +12,7 @@ const SingleFaq = ({question, answer}) => {
             </Box>
             <AnimatePresence>
                 {isExpanded && (
-                    <motion.div initial={{opacity: 0, maxHeight: 0}} animate={{opacity: 1, maxHeight: 1000, duration: 200}}
+                    <motion.div initial={{opacity: 0, maxHeight: 0}} animate={{opacity: 1, maxHeight: 100, duration: 200}}
                                 exit={{opacity: 0, maxHeight: 0}}>
                         <Box pb={3}>
                             <Text fontFamily={"Roboto"}>{answer}</Text>
