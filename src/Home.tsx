@@ -375,7 +375,7 @@ const Home = (props: HomeProps) => {
                                                 className="vertical-timeline-element--education"
                                                 iconStyle={{background: 'black', color: '#fff'}}
                                             >
-                                                <RoadMapComp heading={"Distribution of 25% Fee to Holders"}
+                                                <RoadMapComp heading={"Distribution of 50% Fee to Holders"}
                                                              text={""}/>
                                             </VerticalTimelineElement>
                                             <VerticalTimelineElement
